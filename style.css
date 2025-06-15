@@ -1,0 +1,125 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Nicer font */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e0e0e0; /* Slightly darker background for contrast */
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    box-sizing: border-box;
+}
+
+#pdf-upload {
+    margin-bottom: 20px;
+    padding: 12px 18px; /* Slightly larger padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#pdf-upload:hover {
+    background-color: #f7f7f7;
+}
+
+#book-container {
+    display: flex;
+    width: 90vw;
+    max-width: 1100px; /* Slightly adjusted max-width */
+    height: 85vh; /* Adjusted height for better aspect ratio */
+    max-height: 750px;
+    background-color: #333; /* Darker background for the 'book cover' effect */
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.3), /* Deeper shadow for depth */
+                inset 0 0 10px rgba(0,0,0,0.2); /* Inner shadow for book depth */
+    border-radius: 8px; /* Slightly more rounded book corners */
+    position: relative; /* For potential pseudo-elements like spine */
+    padding: 15px; /* Padding for the "cover" */
+}
+
+/* Optional: Simulate a book spine or central division */
+#book-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 5px; /* Align with padding */
+    bottom: 5px; /* Align with padding */
+    width: 5px; /* Width of the spine */
+    background-color: rgba(0,0,0,0.1); /* Subtle spine color */
+    transform: translateX(-50%);
+    box-shadow: inset 1px 0 3px rgba(0,0,0,0.2);
+    z-index: 10; /* Ensure it's above pages if pages have their own z-index */
+}
+
+
+.page {
+    flex: 1;
+    background-color: #fff; /* White pages */
+    /* Softer page border */
+    border: none; /* Remove individual page borders, use shadows instead */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For stacking context and pseudo-elements */
+    box-shadow: 0 0 8px rgba(0,0,0,0.15); /* Softer shadow for each page */
+    margin: 0 2px; /* Small gap between pages and container edge/spine */
+}
+
+#page-left {
+    border-top-left-radius: 3px;    /* Slightly rounded inner top corner */
+    border-bottom-left-radius: 3px; /* Slightly rounded inner bottom corner */
+    /* Create a subtle page curl or lift effect */
+    box-shadow: -2px 2px 5px rgba(0,0,0,0.1), 0 0 8px rgba(0,0,0,0.1);
+}
+
+#page-right {
+    border-top-right-radius: 3px;   /* Slightly rounded inner top corner */
+    border-bottom-right-radius: 3px;/* Slightly rounded inner bottom corner */
+    /* Create a subtle page curl or lift effect */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1), 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* Styling for the canvas elements within the pages */
+.page canvas {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block; /* Remove extra space below canvas */
+    border-radius: 2px; /* Very slight rounding of canvas content if visible */
+}
+
+#navigation {
+    margin-top: 25px; /* More space above navigation */
+    display: flex; /* Keep this if buttons are used */
+    gap: 15px; /* Space between buttons */
+}
+
+#navigation button {
+    padding: 12px 25px; /* Larger buttons */
+    background-color: #5a67d8; /* A more modern blue/purple */
+    color: white;
+    border: none;
+    border-radius: 6px; /* Softer radius */
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+#navigation button:hover {
+    background-color: #434190; /* Darker shade on hover */
+    transform: translateY(-1px); /* Slight lift on hover */
+}
+
+#navigation button:active {
+    transform: translateY(0px); /* Click effect */
+}
+
+/* Hide navigation buttons if swipe is the primary interaction desired */
+/* #navigation {
+    display: none;
+} */
+
+/* Add a class to hide the upload button after selection, JS already does this */
+/* .hidden { display: none; } */

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Book Viewer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
+</head>
+<body>
+    <input type="file" id="pdf-upload" accept="application/pdf">
+    <div id="book-container">
+        <div id="page-left" class="page"></div>
+        <div id="page-right" class="page"></div>
+    </div>
+    <div id="navigation">
+        <button id="prev-page">Previous</button>
+        <button id="next-page">Next</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
