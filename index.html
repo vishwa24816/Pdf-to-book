@@ -1,23 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>     
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Book Viewer</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Pdf-to-book</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
-    <input type="file" id="pdf-upload" accept="application/pdf">
-    <div id="book-container">
-        <div id="page-left" class="page"></div>
-        <div id="page-right" class="page"></div>
+<!-- View A: Dashboard -->
+<section id="view-dashboard">
+  <header class="topbar"><h1>📚 Pdf-to-book</h1></header>
+  <div id="dropzone" tabindex="0">
+    <p>Drag &amp; drop PDFs here, or</p>
+    <label class="btn" for="file-input">Choose PDFs</label>
+    <input type="file" id="file-input" accept="application/pdf,.pdf" multiple hidden>
+  </div>
+  <p id="dash-status" class="status" hidden></p>
+  <div id="book-grid"></div>
+</section>
+
+<!-- View B: Book Viewer -->
+<section id="view-viewer" hidden>
+  <header class="topbar viewer-bar">
+    <button id="btn-back" class="btn ghost" title="Back to Dashboard">← Library</button>
+    <span id="page-label">Page <input id="page-jump" type="number" min="1" value="1"> of <span id="page-total">?</span></span>
+    <span class="spacer"></span>
+    <button id="zoom-out" class="btn ghost" title="Zoom out">−</button>
+    <button id="zoom-reset" class="btn ghost" title="Reset zoom">100%</button>
+    <button id="zoom-in" class="btn ghost" title="Zoom in">+</button>
+    <button id="btn-full" class="btn ghost" title="Fullscreen">⛶</button>
+  </header>
+  <p id="viewer-status" class="status" hidden></p>
+  <div id="stage-wrap">
+    <div id="stage">
+      <div id="page-left" class="page"></div>
+      <div id="page-right" class="page"></div>
     </div>
-    <div id="navigation">
-        <button id="prev-page">Previous</button>
-        <button id="next-page">Next</button>
-    </div>
-    <script src="script.js"></script>
+  </div>
+  <footer class="viewer-nav">
+    <button id="prev-page" class="btn">← Prev</button>
+    <span id="spread-label"></span>
+    <button id="next-page" class="btn">Next →</button>
+  </footer>
+</section>
+
+<script src="js/db.js"></script>
+<script src="js/pdfEngine.js"></script>
+<script src="js/bookViewer.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
